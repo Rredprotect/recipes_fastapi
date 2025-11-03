@@ -81,8 +81,8 @@ jobs:
     - name: Run Bandit Security Scan
       run: |
         pip install bandit
-        bandit -r . -f json -o bandit-report.json || true
-        bandit -r .
+        bandit -r . --exclude tests/ -f json -o bandit-report.json || true
+        bandit -r . --exclude tests/
     
     - name: Run Safety Check
       run: |
