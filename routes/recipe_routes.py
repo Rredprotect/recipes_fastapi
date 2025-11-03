@@ -1,4 +1,9 @@
-from typing import Annotated, List
+from typing import List
+
+try:
+    from typing import Annotated  # Python 3.9+
+except ImportError:
+    from typing_extensions import Annotated  # Python < 3.9
 
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy import func
