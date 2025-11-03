@@ -19,9 +19,7 @@ router = APIRouter(prefix="/recipes", tags=["recipes"])
 
 
 @router.post("/", response_model=Recipe, status_code=201)
-async def create_recipe(
-    recipe: RecipeCreate, db: Session = Depends(get_db)
-) -> Recipe:
+async def create_recipe(recipe: RecipeCreate, db: Session = Depends(get_db)) -> Recipe:
     db_recipe = RecipeDB(
         title=recipe.title,
         description=recipe.description,
