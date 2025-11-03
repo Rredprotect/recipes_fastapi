@@ -51,7 +51,7 @@ jobs:
     
     - name: Run mypy type checking
       run: |
-        mypy main.py --ignore-missing-imports
+        mypy . --ignore-missing-imports
     
     - name: Run tests
       run: |
@@ -77,8 +77,8 @@ jobs:
     - name: Run Bandit Security Scan
       run: |
         pip install bandit
-        bandit -r main.py -f json -o bandit-report.json || true
-        bandit -r main.py
+        bandit -r . -f json -o bandit-report.json || true
+        bandit -r .
     
     - name: Run Safety Check
       run: |
