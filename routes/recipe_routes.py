@@ -1,10 +1,5 @@
 from typing import List
 
-try:
-    from typing import Annotated  # Python 3.9+
-except ImportError:
-    from typing_extensions import Annotated  # Python < 3.9
-
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy import func
 from sqlalchemy.orm import Session
@@ -25,7 +20,7 @@ router = APIRouter(prefix="/recipes", tags=["recipes"])
 
 @router.post("/", response_model=Recipe, status_code=201)
 async def create_recipe(
-    recipe: RecipeCreate, db: Annotated[Session, Depends(get_db)]
+    recipe: RecipeCreate, db: Session = Depends(get_db)
 ) -> Recipe:
     db_recipe = RecipeDB(
         title=recipe.title,
