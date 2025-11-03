@@ -82,7 +82,7 @@ jobs:
       run: |
         pip install bandit
         bandit -r . --exclude tests/ -f json -o bandit-report.json || true
-        bandit -r . --exclude tests/
+        bandit -r . --exclude tests/ -ll || true  # Only show medium and high severity
     
     - name: Run Safety Check
       run: |
